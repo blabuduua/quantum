@@ -3,7 +3,7 @@
     <div class="container">
       <section>
         <div class="flex">
-          <div class="max-w-xs mr-10">
+          <div class="mr-10">
             <label for="wallet" class="block text-sm font-medium text-gray-700"
               >Поиск</label
             >

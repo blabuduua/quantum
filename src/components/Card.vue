@@ -16,24 +16,22 @@
       {{ post.body }}
     </p>
     <div v-if="isClicked">
-      <div class="max-w-xs">
-        <div class="mt-1 relative rounded-md shadow-md">
-          <input
-            ref="input"
-            v-model="form[post.id]"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="search"
-            type="text"
-            placeholder="Введите новый Body"
-          />
-        </div>
+      <div class="mt-1 relative rounded-md shadow-md">
+        <input
+          ref="input"
+          v-model="form[post.id]"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="search"
+          type="text"
+          placeholder="Введите новый Body"
+        />
       </div>
       <ul class="my-4 space-y-3">
         <li>
           <button
             @click="save()"
             href="#"
-            class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            class="flex w-full items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
           >
             <span class="flex-1 ml-3 whitespace-nowrap">Save Changes</span>
           </button>
@@ -42,19 +40,19 @@
           <button
             @click="$emit('disableChanges')"
             href="#"
-            class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            class="flex w-full items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
           >
             <span class="flex-1 ml-3 whitespace-nowrap">Disable Changes</span>
           </button>
         </li>
         <li>
-          <a
+          <button
             @click="$emit('handleDelete')"
             href="#"
-            class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            class="flex items-center w-full p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
           >
             <span class="flex-1 ml-3 whitespace-nowrap">Delete Post</span>
-          </a>
+          </button>
         </li>
       </ul>
     </div>
