@@ -5,15 +5,26 @@
         <div class="flex">
           <div class="mr-10">
             <label for="wallet" class="block text-sm font-medium text-gray-700"
-              >Поиск</label
+              >Search</label
             >
             <div class="mt-1 relative rounded-md shadow-md">
               <input
                 v-model="search"
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="
+                  shadow
+                  appearance-none
+                  border
+                  rounded
+                  w-full
+                  py-2
+                  px-3
+                  text-gray-700
+                  leading-tight
+                  focus:outline-none focus:shadow-outline
+                "
                 id="search"
                 type="text"
-                placeholder="Например ipsam ..."
+                placeholder="example ipsam ..."
               />
             </div>
           </div>
@@ -23,11 +34,20 @@
       <hr class="w-full border-t border-gray-600 my-4" />
       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
         <Card
-          class="p-4 bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700"
-          v-for="post in searchedPosts"
+          class="
+            p-4
+            bg-white
+            rounded-lg
+            border
+            shadow-md
+            sm:p-6
+            dark:bg-gray-800 dark:border-gray-700
+          "
+          v-for="(post, index) in searchedPosts"
           :key="post.id"
           :post="post"
           :form="form"
+          :index="index"
           @saveChanges="saveChanges(post, form[post.id])"
           @disableChanges="disableChanges(post, form[post.id])"
           @handleDelete="handleDelete(post, form[post.id])"
@@ -53,7 +73,6 @@ export default {
   },
   created() {
     const postsData = localStorage.getItem("posts");
-
     if (!postsData) {
       fetch("https://jsonplaceholder.typicode.com/posts")
         .then((response) => response.json())
@@ -64,9 +83,7 @@ export default {
     } else {
       this.posts = JSON.parse(postsData);
     }
-
     // Сделать запрос и забрать список постов
-
     // Будем сравнивать ответ сервера и перезаписывать в него изменения пользователя
     // const tickersData = localStorage.getItem("edited-posts");
   },
@@ -83,7 +100,6 @@ export default {
       if (newBody === undefined) {
         return;
       }
-
       const newForm = () => (this.form[Object.keys(this.form)[0]] = "");
       this.form = newForm;
     },
@@ -91,20 +107,16 @@ export default {
       if (newBody === undefined) {
         return;
       }
-
       this.posts = this.posts.map((post) => {
         if (post === changedPost) {
           const updatedPost = {
             ...post,
             body: newBody,
           };
-
           post = updatedPost;
         }
-
         return post;
       });
-
       localStorage.setItem("posts", JSON.stringify(this.posts));
       const newForm = () => (this.form[Object.keys(this.form)[0]] = "");
       this.form = newForm;
