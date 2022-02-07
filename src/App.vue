@@ -21,11 +21,15 @@
 
       <hr class="w-full border-t border-gray-600 my-4" />
       <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+        <div
+          v-for="post in posts"
+          :key="post.id"
+          class="max-w-sm rounded overflow-hidden shadow-lg bg-white"
+        >
           <div class="px-6 py-4">
-            <div class="text-xl mb-2">ID</div>
-            <div class="font-bold text-xl mb-2">Title</div>
-            <p class="text-gray-700 text-base">Body</p>
+            <div class="text-xl mb-2">{{ post.id }}</div>
+            <div class="font-bold text-xl mb-2">{{ post.title }}</div>
+            <p class="text-gray-700 text-base">{{ post.body }}</p>
           </div>
         </div>
       </dl>
@@ -36,6 +40,26 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      posts: {},
+    };
+  },
+  created() {
+    // Сделать запрос и забрать список постов
+    fetch("http://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((posts) => (this.posts = posts));
+
+    // Будем сравнивать ответ сервера и перезаписывать в него изменения пользователя
+    // const tickersData = localStorage.getItem("edited-posts");
+  },
+  methods: {
+    saveEditedPost() {
+      // Нужно для сохранения в локал сторедж
+      localStorage.setItem("edited-posts", JSON.stringify(this.tickers));
+    },
+  },
 };
 </script>
 
